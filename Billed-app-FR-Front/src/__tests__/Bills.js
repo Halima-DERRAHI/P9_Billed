@@ -33,19 +33,24 @@ describe("Given I am connected as an employee", () => {
       document.body.innerHTML = BillsUI({ data: bills })
       const dates = screen
       .getAllByText(/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/i).map(a => a.innerHTML)
-      const antiChrono = (a, b) => (b - a)
+      const antiChrono = (a, b) => new Date(b.date) - new Date(a.date) // Sort bills
       const datesSorted = [...dates].sort(antiChrono)
       expect(dates).toEqual(datesSorted)
     })
   })
-  describe("When we click on icon eye", () => {
+  describe("When I click on icon eye", () => {
     test("A modal should open with the bill proof file", () => {
-
+      document.body.innerHTML = BillsUI({ data: bills })
+      const iconEye = document.getAllByTestId("icon-eye")
+      iconEye.forEach( icon => {
+        
+      });
     })
   })
-  describe("When we click on new Bill", () => {
+  describe("When I click on new Bill", () => {
     test("The modal new bill should open", () => {
-      
+      document.body.innerHTML = BillsUI({ data: bills })
+
     })
   })
 })
