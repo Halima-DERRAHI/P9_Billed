@@ -26,7 +26,7 @@ describe("Given I am connected as an employee", () => {
       await waitFor(() => screen.getByTestId('icon-window'))
       const windowIcon = screen.getByTestId('icon-window')
       //to-do write expect expression
-      expect(windowIcon.className).toB('icon-window')
+      expect(windowIcon.className).toBe('active-icon')
 
     })
     test("Then bills should be ordered from earliest to latest", () => {
@@ -36,6 +36,16 @@ describe("Given I am connected as an employee", () => {
       const antiChrono = (a, b) => (b - a)
       const datesSorted = [...dates].sort(antiChrono)
       expect(dates).toEqual(datesSorted)
+    })
+  })
+  describe("When we click on icon eye", () => {
+    test("A modal should open with the bill proof file", () => {
+
+    })
+  })
+  describe("When we click on new Bill", () => {
+    test("The modal new bill should open", () => {
+      
     })
   })
 })
