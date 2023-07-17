@@ -70,20 +70,18 @@ describe("Given I am connected as an employee", () => {
 
       const file = new File(["hello"], "hello.txt", { type: "document/txt" });
       const inputFile = screen.getByTestId("file");
-
+      
       const handleChangeFile = jest.fn((e) => newBill.handleChangeFile(e));
       inputFile.addEventListener("change", handleChangeFile);
 
       fireEvent.change(inputFile, { target: { files: [file] } });
 
-      expect(handleChangeFile).toHaveBeenCalled();
+      expect(handleChangeFile).toHaveBeenCalledTimes(1);
       expect(inputFile.files[0].type).toBe("document/txt");
 
       const errorMessage = document.querySelector(".error-message")
       await waitFor(() => errorMessage );
-      expect(errorMessage.classList).not.toContain(
-        "hidden"
-      );
+      expect(errorMessage.classList.contains("hidden")).toBeFalsy();
     });
   });
 
