@@ -72,6 +72,13 @@ export default class {
     this.document = document
     this.onNavigate = onNavigate
     this.store = store
+
+    this.listStatus = {
+      isOpen1: true,
+      isOpen2: true,
+      isOpen3: true,
+    };
+
     $('#arrow-icon1').click((e) => this.handleShowTickets(e, bills, 1))
     $('#arrow-icon2').click((e) => this.handleShowTickets(e, bills, 2))
     $('#arrow-icon3').click((e) => this.handleShowTickets(e, bills, 3))
@@ -131,18 +138,21 @@ export default class {
   }
 
   handleShowTickets(e, bills, index) {
-    if (this.counter === undefined || this.index !== index) this.counter = 0
+
     if (this.index === undefined || this.index !== index) this.index = index
-    if (this.counter % 2 === 0) {
+
+    if (this.listStatus[`isOpen${index}`]) {
+
       $(`#arrow-icon${this.index}`).css({ transform: 'rotate(0deg)'})
       $(`#status-bills-container${this.index}`)
         .html(cards(filteredBills(bills, getStatus(this.index))))
-      this.counter ++
+      this.listStatus[`isOpen${index}`] = false;
+
     } else {
       $(`#arrow-icon${this.index}`).css({ transform: 'rotate(90deg)'})
       $(`#status-bills-container${this.index}`)
         .html("")
-      this.counter ++
+      this.listStatus[`isOpen${index}`] = true;
     }
 
     bills.forEach(bill => {
