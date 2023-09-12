@@ -1,3 +1,7 @@
 database_test.sqlite
 node_modules/
+<<<<<<< HEAD
 coverage/
+=======
+coverage/
+>>>>>>> parent of 1717fb7 (Delete Billed-app-FR-Back directory)
