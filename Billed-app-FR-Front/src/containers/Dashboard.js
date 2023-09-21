@@ -152,7 +152,7 @@ export default class {
       $(`#status-bills-container${this.index}`).html("");
       this.listStatus[`isOpen${index}`] = true;
     }
-
+    // Fix dashboard bug
     bills.forEach(bill => {
       $(`#open-bill${bill.id}`).off('click').click((e) => this.handleEditTicket(e, bill, bills));
     })
